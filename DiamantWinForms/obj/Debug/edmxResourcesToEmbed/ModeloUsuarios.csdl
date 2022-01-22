@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EntregaProductoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="boleta">
+    <Key>
+      <PropertyRef Name="bol_serie" />
+    </Key>
+    <Property Name="bol_serie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bolsoc_id" Type="Int32" />
+    <Property Name="bolpro_id" Type="Int32" />
+    <Property Name="bollug_id" Type="Int32" />
+    <Property Name="bol_fecha" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="lugar" Relationship="Self.FK_lugar" FromRole="boleta" ToRole="lugar" />
+    <NavigationProperty Name="producto" Relationship="Self.FK_producto" FromRole="boleta" ToRole="producto" />
+    <NavigationProperty Name="socio" Relationship="Self.FK_socio" FromRole="boleta" ToRole="socio" />
+  </EntityType>
+  <EntityType Name="dedo">
+    <Key>
+      <PropertyRef Name="ded_id" />
+    </Key>
+    <Property Name="ded_id" Type="Int32" Nullable="false" />
+    <Property Name="ded_nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="dedo_Socio" Relationship="Self.FK_dedo" FromRole="dedo" ToRole="dedo_Socio" />
+  </EntityType>
+  <EntityType Name="dedo_Socio">
+    <Key>
+      <PropertyRef Name="dedsoc_serie" />
+    </Key>
+    <Property Name="dedsoc_serie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dedsoc_socio" Type="Int32" />
+    <Property Name="dedsoc_dedo" Type="Int32" />
+    <Property Name="dedsoc_info" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="dedo" Relationship="Self.FK_dedo" FromRole="dedo_Socio" ToRole="dedo" />
+    <NavigationProperty Name="socio" Relationship="Self.FK_dedoSocio" FromRole="dedo_Socio" ToRole="socio" />
+  </EntityType>
+  <EntityType Name="lugar">
+    <Key>
+      <PropertyRef Name="lug_id" />
+    </Key>
+    <Property Name="lug_id" Type="Int32" Nullable="false" />
+    <Property Name="lug_nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="boletas" Relationship="Self.FK_lugar" FromRole="lugar" ToRole="boleta" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="Int32" Nullable="false" />
+    <Property Name="prod_nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_valor" Type="Int32" />
+    <NavigationProperty Name="boletas" Relationship="Self.FK_producto" FromRole="producto" ToRole="boleta" />
+  </EntityType>
+  <EntityType Name="socio">
+    <Key>
+      <PropertyRef Name="soc_id" />
+    </Key>
+    <Property Name="soc_id" Type="Int32" Nullable="false" />
+    <Property Name="soc_rut" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="soc_nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="soc_ape_paterno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="soc_ape_materno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="soc_cumple" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="boletas" Relationship="Self.FK_socio" FromRole="socio" ToRole="boleta" />
+    <NavigationProperty Name="dedo_Socio" Relationship="Self.FK_dedoSocio" FromRole="socio" ToRole="dedo_Socio" />
+  </EntityType>
+  <Association Name="FK_lugar">
+    <End Role="lugar" Type="Self.lugar" Multiplicity="0..1" />
+    <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lugar">
+        <PropertyRef Name="lug_id" />
+      </Principal>
+      <Dependent Role="boleta">
+        <PropertyRef Name="bollug_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto">
+    <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+    <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="prod_id" />
+      </Principal>
+      <Dependent Role="boleta">
+        <PropertyRef Name="bolpro_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socio">
+    <End Role="socio" Type="Self.socio" Multiplicity="0..1" />
+    <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="socio">
+        <PropertyRef Name="soc_id" />
+      </Principal>
+      <Dependent Role="boleta">
+        <PropertyRef Name="bolsoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dedo">
+    <End Role="dedo" Type="Self.dedo" Multiplicity="0..1" />
+    <End Role="dedo_Socio" Type="Self.dedo_Socio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dedo">
+        <PropertyRef Name="ded_id" />
+      </Principal>
+      <Dependent Role="dedo_Socio">
+        <PropertyRef Name="dedsoc_dedo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dedoSocio">
+    <End Role="socio" Type="Self.socio" Multiplicity="0..1" />
+    <End Role="dedo_Socio" Type="Self.dedo_Socio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="socio">
+        <PropertyRef Name="soc_id" />
+      </Principal>
+      <Dependent Role="dedo_Socio">
+        <PropertyRef Name="dedsoc_socio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntregaProductoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="boletas" EntityType="Self.boleta" />
+    <EntitySet Name="dedoes" EntityType="Self.dedo" />
+    <EntitySet Name="dedo_Socio" EntityType="Self.dedo_Socio" />
+    <EntitySet Name="lugars" EntityType="Self.lugar" />
+    <EntitySet Name="productoes" EntityType="Self.producto" />
+    <EntitySet Name="socios" EntityType="Self.socio" />
+    <AssociationSet Name="FK_lugar" Association="Self.FK_lugar">
+      <End Role="lugar" EntitySet="lugars" />
+      <End Role="boleta" EntitySet="boletas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto" Association="Self.FK_producto">
+      <End Role="producto" EntitySet="productoes" />
+      <End Role="boleta" EntitySet="boletas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socio" Association="Self.FK_socio">
+      <End Role="socio" EntitySet="socios" />
+      <End Role="boleta" EntitySet="boletas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dedo" Association="Self.FK_dedo">
+      <End Role="dedo" EntitySet="dedoes" />
+      <End Role="dedo_Socio" EntitySet="dedo_Socio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dedoSocio" Association="Self.FK_dedoSocio">
+      <End Role="socio" EntitySet="socios" />
+      <End Role="dedo_Socio" EntitySet="dedo_Socio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

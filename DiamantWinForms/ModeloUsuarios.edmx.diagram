@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6140bbd67982446bb855c22ce4c7da16" Name="Diagram1">
+        <EntityTypeShape EntityType="EntregaProductoModel.boleta" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntregaProductoModel.dedo" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntregaProductoModel.dedo_Socio" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntregaProductoModel.lugar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntregaProductoModel.producto" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntregaProductoModel.socio" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="EntregaProductoModel.FK_lugar" ManuallyRouted="false" />
+        <AssociationConnector Association="EntregaProductoModel.FK_producto" ManuallyRouted="false" />
+        <AssociationConnector Association="EntregaProductoModel.FK_socio" ManuallyRouted="false" />
+        <AssociationConnector Association="EntregaProductoModel.FK_dedo" ManuallyRouted="false" />
+        <AssociationConnector Association="EntregaProductoModel.FK_dedoSocio" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

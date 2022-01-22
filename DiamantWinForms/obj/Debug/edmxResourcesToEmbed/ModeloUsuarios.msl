@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EntregaProductoModelStoreContainer" CdmEntityContainer="EntregaProductoEntities">
+    <EntitySetMapping Name="boletas">
+      <EntityTypeMapping TypeName="EntregaProductoModel.boleta">
+        <MappingFragment StoreEntitySet="boleta">
+          <ScalarProperty Name="bol_serie" ColumnName="bol_serie" />
+          <ScalarProperty Name="bolsoc_id" ColumnName="bolsoc_id" />
+          <ScalarProperty Name="bolpro_id" ColumnName="bolpro_id" />
+          <ScalarProperty Name="bollug_id" ColumnName="bollug_id" />
+          <ScalarProperty Name="bol_fecha" ColumnName="bol_fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dedoes">
+      <EntityTypeMapping TypeName="EntregaProductoModel.dedo">
+        <MappingFragment StoreEntitySet="dedo">
+          <ScalarProperty Name="ded_id" ColumnName="ded_id" />
+          <ScalarProperty Name="ded_nombre" ColumnName="ded_nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dedo_Socio">
+      <EntityTypeMapping TypeName="EntregaProductoModel.dedo_Socio">
+        <MappingFragment StoreEntitySet="dedo_Socio">
+          <ScalarProperty Name="dedsoc_serie" ColumnName="dedsoc_serie" />
+          <ScalarProperty Name="dedsoc_socio" ColumnName="dedsoc_socio" />
+          <ScalarProperty Name="dedsoc_dedo" ColumnName="dedsoc_dedo" />
+          <ScalarProperty Name="dedsoc_info" ColumnName="dedsoc_info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lugars">
+      <EntityTypeMapping TypeName="EntregaProductoModel.lugar">
+        <MappingFragment StoreEntitySet="lugar">
+          <ScalarProperty Name="lug_id" ColumnName="lug_id" />
+          <ScalarProperty Name="lug_nombre" ColumnName="lug_nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productoes">
+      <EntityTypeMapping TypeName="EntregaProductoModel.producto">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="prod_nombre" ColumnName="prod_nombre" />
+          <ScalarProperty Name="prod_valor" ColumnName="prod_valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="socios">
+      <EntityTypeMapping TypeName="EntregaProductoModel.socio">
+        <MappingFragment StoreEntitySet="socio">
+          <ScalarProperty Name="soc_id" ColumnName="soc_id" />
+          <ScalarProperty Name="soc_rut" ColumnName="soc_rut" />
+          <ScalarProperty Name="soc_nombre" ColumnName="soc_nombre" />
+          <ScalarProperty Name="soc_ape_paterno" ColumnName="soc_ape_paterno" />
+          <ScalarProperty Name="soc_ape_materno" ColumnName="soc_ape_materno" />
+          <ScalarProperty Name="soc_cumple" ColumnName="soc_cumple" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
